@@ -1,42 +1,172 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scuadron Spotters - Mantenimiento</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #0d1117;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0f1724" />
+  <title>Scuadron Spotters — Mantenimiento</title>
 
-        .container {
-            max-width: 90%;
-        }
+  <!-- Fuente limpia -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
+  <style>
+    :root{
+      --bg1: #071029;
+      --bg2: #081325;
+      --card: rgba(255,255,255,0.05);
+      --accent: #00d1ff;
+      --glass: rgba(255,255,255,0.06);
+      --text: #e6eef6;
+      --muted: rgba(230,238,246,0.75);
+      --radius: 18px;
+    }
 
-        p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Scuadron Spotters</h1>
-        <p>Página web en mantenimiento</p>
-    </div>
-</body>
-</html>
+    /* Reset minimal */
+    * {box-sizing: border-box; margin: 0; padding: 0}
+    html,body {height: 100%}
+    body{
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(120deg, var(--bg1) 0%, var(--bg2) 60%);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 32px;
+    }
+
+    /* Animated radial highlights */
+    .bg-orb{
+      position: fixed;
+      inset: -20%;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(600px 300px at 10% 20%, rgba(0,209,255,0.08), transparent 15%),
+        radial-gradient(500px 250px at 90% 80%, rgba(0,255,150,0.05), transparent 12%);
+      animation: drift 12s ease-in-out infinite alternate;
+      filter: blur(30px);
+    }
+    @keyframes drift {
+      from {transform: translateY(-10px) translateX(-6px)}
+      to   {transform: translateY(10px) translateX(6px)}
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 920px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap: 28px;
+      align-items: center;
+    }
+
+    /* card info */
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(6px) saturate(120%);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .brand {
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+
+    .logo {
+      width:78px;
+      height:78px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(135deg, rgba(0,209,255,0.12), rgba(0,255,150,0.06));
+      border: 1px solid rgba(255,255,255,0.04);
+      flex-shrink:0;
+    }
+
+    .brand h1 {
+      font-size:1.35rem;
+      letter-spacing: -0.02em;
+      margin-bottom:6px;
+    }
+    .brand p {
+      color: var(--muted);
+      font-size:0.95rem;
+    }
+
+    .big {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      margin-top: 18px;
+      line-height:1.05;
+    }
+
+    .muted {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size:0.98rem;
+    }
+
+    .actions {
+      margin-top:20px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn {
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:600;
+      cursor:pointer;
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: transform .14s ease, box-shadow .14s ease;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:var(--text);
+    }
+    .btn:active{ transform: translateY(1px) }
+    .btn-primary{
+      background: linear-gradient(90deg, rgba(0,209,255,0.14), rgba(0,255,150,0.08));
+      box-shadow: 0 6px 20px rgba(0,209,255,0.06);
+      color: #02121a;
+      border:none;
+    }
+
+    .secondary{
+      color:var(--muted);
+      font-weight:600;
+      border: 1px dashed rgba(255,255,255,0.04);
+      background: transparent;
+    }
+
+    /* right panel */
+    .status {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .status .panel {
+      padding:18px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .eta {
+      font-weight:700;
+      font-size:1.25rem;
+      color:var(--accent);
+    }
+
+    .small {
+      color:var(--muted);
